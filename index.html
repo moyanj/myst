@@ -22,6 +22,18 @@
 			text-align: center;
 			color: white;
 		}
+
+		#hitokoto_text {
+			color: white;
+			text-align: center;
+		}
+
+		#hitokoto_text {
+			text-align: center;
+			color: white;
+			position: absolute;
+			bottom: 0px
+		}
 	</style>
 
 </head>
@@ -38,6 +50,20 @@
 		<input type="text" placeholder="请输入关键字" id="mc" onclick="frish" />
 		<button onclick="frish()">搜索</button>
 	</div>
+	<p align="center" id = "yy">
+		<a id="hitokoto_text">获取一言中...</a>
+	</p>
+
+	<script>
+		fetch('https://v1.hitokoto.cn')
+			.then(response => response.json())
+			.then(data => {
+				const hitokoto = document.getElementById('hitokoto_text')
+				hitokoto.innerText = data.hitokoto
+			})
+			.catch(console.error)
+	</script>
+
 </body>
 
 </html>

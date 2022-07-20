@@ -17,9 +17,9 @@
     float: left;
     /* 左浮动 */
     flex: 4;
-    height: 30px;
+    height: 35px;
     outline: none;
-    border: 1px solid red;
+    border: 1px solid skyblue;
     box-sizing: border-box;
     padding-left: 10px;
 
@@ -30,8 +30,8 @@
     margin: 0;
     float: right;
     flex: 1;
-    height: 30px;
-    background-color: red;
+    height: 35px;
+    background-color: skyblue;
     color: white;
     border-style: none;
     outline: none;
