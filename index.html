@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="times.js"></script> <!-- 获取时间  -->
 	<!-- 内部JS -->
 	<script>
+		// 检测是否为IE
 		function isIe() {
 			var i = navigator.userAgent.toLowerCase().indexOf("msie");
 			return i >= 0;
@@ -34,6 +35,8 @@
 			} else {
 				// 拼接字符串
 				var url = serc + text;
+				// 清空搜索框内容
+				document.getElementById("mc").value = "";
 				// 跳转
 				location.href = url;
 			}
