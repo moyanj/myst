@@ -38,18 +38,20 @@
 				// 清空搜索框内容
 				document.getElementById("mc").value = "";
 				// 跳转
-				window.open(url);
+				location.href = url;
 			}
 
 			// 回车键搜索逻辑
 			document.onkeydown = function (event) {
 				var e = event || window.event || arguments.callee.caller.arguments[0];
 				if (e && e.keyCode == 13) {
+					// 调用搜索函数
 					frish();
 				}
 			};
 		}
 	</script>
+
 	<script>
 		// 获取一言内容
 		fetch('https://v1.hitokoto.cn')
@@ -59,23 +61,6 @@
 				hitokoto.innerText = data.hitokoto
 			})
 			.catch(console.error)
-	</script>
-	<script>
-		function by() {
-
-			alert("成功将搜索引擎设置为必应");
-			return "https://cn.bing.com/search?q=";
-		};
-		function bd() {
-
-			alert("成功将搜索引擎设置为百度");
-			return "https://www.baidu.com/s?wd=";
-		};
-		function gg() {
-
-			alert("成功将搜索引擎设置为哔哩哔哩");
-			return "https://search.bilibili.com/all?keyword=";
-		};
 	</script>
 </head>
 
@@ -87,17 +72,10 @@
 		<input type="text" placeholder="请输入关键字" id="mc" onclick="frish" />
 		<button onclick="frish()">搜索</button>
 	</div>
-	<div align="center">
-		<button onclick="serc = by()" id="sobuttons">&nbsp;&nbsp;&nbsp;必应&nbsp;&nbsp;&nbsp;</button>
-		<button onclick="serc = bd()" id="sobuttons">&nbsp;&nbsp;&nbsp;百度&nbsp;&nbsp;&nbsp;</button>
-		<button onclick="serc = gg()" id="sobuttons">哔哩哔哩</button>
-	</div>
 	<!-- 一言 -->
-	<div align="center">
-		<p id="yy">
-			<a id="hitokoto_text">获取一言中...</a>
-		</p>
-	</div>
+	<p align="center" id="yy">
+		<a id="hitokoto_text">获取一言中...</a>
+	</p>
 
 </body>
 
