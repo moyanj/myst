@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- 基础设置 -->
+		<meta charset="utf-8">
+		<title>莫颜起始页</title>
+		<!-- 导入外部资源 -->
+		<link rel="stylesheet" type="text/css" href="css/style.css"> <!-- 导入CSS  -->
+		<script src="js/main.js"></script> <!-- 主js文件 -->
+		<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.10.2.min.js"></script> <!-- 引入jquery -->
+		<!-- 内部JS -->
+		<script>
+			// 检测设备类型
+			var os = function() {
+				var ua = navigator.userAgent,
+					isWindowsPhone = /(?:Windows Phone)/.test(ua),
+					isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
+					isAndroid = /(?:Android)/.test(ua),
+					isFireFox = /(?:Firefox)/.test(ua),
+					isChrome = /(?:Chrome|CriOS)/.test(ua),
+					isTablet = /(?:iPad|PlayBook)/.test(ua) || (isAndroid && !/(?:Mobile)/.test(ua)) || (isFireFox &&
+						/(?:Tablet)/.test(ua)),
+					isPhone = /(?:iPhone)/.test(ua) && !isTablet,
+					isPc = !isPhone && !isAndroid && !isSymbian;
+				return {
+					isTablet: isTablet,
+					isPhone: isPhone,
+					isAndroid: isAndroid,
+					isPc: isPc
+				};
+			}();
+			console.log('os:'
+				os)
+			if (os.isAndroid || os.isPhone) {
+				// 手机
+				console.log("设备为手机")
+				location.href("index_m.html")
+			}
+		</script>
+		<script>
+			// 弹窗显示
+			function show() {
+				var show = $(".dialog").css("display");
+				$(".dialog").css("display", show == "none" ? "block" : "none");
+			}
+			// 弹窗隐藏
+			function close() {
+				var show = $(".dialog").css("display");
+				$(".dialog").css("display", show == "none" ? "block" : "none");
+			}
+			// 搜索主函数
+			function frish() {
+				// 获取搜索框内容
+				var text = document.getElementById("mc").value;
+				if (text == "") {
+					// 防止跳转至必应首页
+					alert("未输入文字");
+				} else {
+					// 拼接字符串
+					var url = serc + text;
+					// 清空搜索框内容
+					document.getElementById("mc").value = "";
+					// 跳转
+					window.open(url);
+				}
+			}
+			// 检测是否为IE浏览器
+			function isIe() {
+				var i = navigator.userAgent.toLowerCase().indexOf("msie");
+				return i >= 0;
+			}
+			// 搜索引擎切换
+			function by() {
+				setCookie("https://cn.bing.com/search?q=")
+				alert("成功将搜索引擎设置为必应");
+				return "https://cn.bing.com/search?q=";
+			};
+
+			function bd() {
+				setCookie("https://www.baidu.com/s?wd=")
+				alert("成功将搜索引擎设置为百度");
+				return "https://www.baidu.com/s?wd=";
+			};
+
+			function bilibili() {
+				setCookie("https://search.bilibili.com/all?keyword=")
+				alert("成功将搜索引擎设置为哔哩哔哩");
+				return "https://search.bilibili.com/all?keyword=";
+			};
+
+			function so() {
+				setCookie("https://www.so.com/s?q=")
+				alert("成功将搜索引擎设置为360");
+				return "https://www.so.com/s?q=";
+			};
+
+			function github() {
+				setCookie("https://github.com/search?q=")
+				alert("成功将搜索引擎设置为Github");
+				return "https://github.com/search?q=";
+			};
+
+			function fso() {
+				setCookie("https://fsoufsou.com/search?q=")
+				alert("成功将搜索引擎设置为F搜");
+				return "https://fsoufsou.com/search?q=";
+			};
+		</script>
+
+		<script>
+			// 获取记录的cookie
+			var serc = getCookie("search")
+			// 检测是否为IE
+			if (isIe() == "false") {
+				url = "index_IE.html";
+				location.href = url;
+			};
+			// 获取一言内容
+			fetch('https://v1.hitokoto.cn')
+				.then(response => response.json())
+				.then(data => {
+					const hitokoto = document.getElementById('hitokoto_text')
+					hitokoto.innerText = data.hitokoto
+				})
+				.catch(console.error)
+		</script>
+
+	</head>
+
+	<body>
+		<!-- 显示时间 -->
+		<h1 id="h2"></h1>
+		<!-- 搜索框 -->
+		<div class="search">
+			<input type="text" placeholder="请输入关键字" id="mc" onclick="frish" />
+			<button onclick="frish()">搜索</button>
+		</div>
+		<!-- 一言 -->
+		<div align="center">
+			<p id="yy">
+				<a id="hitokoto_text">获取一言中...</a>
+			</p>
+		</div>
+		<!-- 设置 -->
+		<div>
+			<button class="btn" onclick="show()" id="set">设置</button>
+			<!-- 弹窗遮罩层 -->
+			<div class="dialog">
+				<!-- 弹窗内容 -->
+				<div class="content">
+					<div class="aclose">
+						<span>设置</span>
+						<a class="close" href="javascript:close();">&times;</a>
+					</div>
+					<div class="contain">
+						<h3>更换搜索</h3>
+						<button onclick="serc = by()" id="sobuttons">&nbsp;&nbsp;&nbsp;必应&nbsp;&nbsp;&nbsp;</button>
+						<button onclick="serc = bd()" id="sobuttons">&nbsp;&nbsp;&nbsp;百度&nbsp;&nbsp;&nbsp;</button>
+						<button onclick="serc = bilibili()" id="sobuttons">哔哩哔哩</button>
+						<button onclick="serc = so()"
+							id="sobuttons">&nbsp;&nbsp;&nbsp;&nbsp;360&nbsp;&nbsp;&nbsp;</button>
+						<button onclick="serc = github()" id="sobuttons">&nbsp;Github&nbsp;</button>
+						<button onclick="serc = fso()" id="sobuttons">&nbsp;&nbsp;&nbsp;F搜&nbsp;&nbsp;&nbsp;</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- 基础设置 -->
+		<meta charset="utf-8">
+		<title>莫颜起始页</title>
+		<!-- 导入外部资源 -->
+		<link rel="stylesheet" type="text/css" href="css/style.css"> <!-- 导入CSS  -->
+		<script type="text/javascript" src="js/main.js"></script> <!-- 获取时间  -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<!-- 内部JS -->
+		<script>
+			function show() {
+				var show = $(".dialog").css("display");
+				$(".dialog").css("display", show == "none" ? "block" : "none");
+			}
+
+			function close() {
+				var show = $(".dialog").css("display");
+				$(".dialog").css("display", show == "none" ? "block" : "none");
+			}
+
+			function frish() {
+				// 获取搜索框内容
+				var text = document.getElementById("mc").value;
+				if (text == "") {
+					// 防止跳转至必应首页
+					alert("未输入文字");
+				} else {
+					// 拼接字符串
+					var url = serc + text;
+					// 清空搜索框内容
+					document.getElementById("mc").value = "";
+					// 跳转
+					window.open(url);
+				}
+
+				// 回车键搜索逻辑
+				document.onkeydown = function(event) {
+					var e = event || window.event || arguments.callee.caller.arguments[0];
+					if (e && e.keyCode == 13) {
+						frish();
+					}
+				};
+			}
+
+			function isIe() {
+				var i = navigator.userAgent.toLowerCase().indexOf("msie");
+				return i >= 0;
+			}
+
+			function by() {
+				setCookie("https://cn.bing.com/search?q=")
+				alert("成功将搜索引擎设置为必应");
+				return "https://cn.bing.com/search?q=";
+			};
+
+			function bd() {
+				setCookie("https://www.baidu.com/s?wd=")
+				alert("成功将搜索引擎设置为百度");
+				return "https://www.baidu.com/s?wd=";
+			};
+
+			function bilibili() {
+				setCookie("https://search.bilibili.com/all?keyword=")
+				alert("成功将搜索引擎设置为哔哩哔哩");
+				return "https://search.bilibili.com/all?keyword=";
+			};
+
+			function so() {
+				setCookie("https://www.so.com/s?q=")
+				alert("成功将搜索引擎设置为360");
+				return "https://www.so.com/s?q=";
+			};
+
+			function github() {
+				setCookie("https://github.com/search?q=")
+				alert("成功将搜索引擎设置为Github");
+				return "https://github.com/search?q=";
+			};
+
+			function fso() {
+				setCookie("https://fsoufsou.com/search?q=")
+				alert("成功将搜索引擎设置为F搜");
+				return "https://fsoufsou.com/search?q=";
+			};
+		</script>
+
+		<script>
+			var serc = getCookie("search")
+			// 获取一言内容
+			var xhr = new XMLHttpRequest();
+			xhr.open('get', 'https://v1.hitokoto.cn');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					var data = JSON.parse(xhr.responseText);
+					var hitokoto = document.getElementById('hitokoto_text');
+					hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+					hitokoto.innerText = data.hitokoto;
+				}
+			}
+			xhr.send();
+		</script>
+
+	</head>
+
+	<body>
+		<!-- 显示时间 -->
+		<h1 id="h2"></h1>
+		<!-- 搜索框 -->
+		<div class="search">
+			<input type="text" placeholder="请输入关键字" id="mc" onclick="frish" />
+			<button onclick="frish()">搜索</button>
+		</div>
+		<!-- 一言 -->
+		<div align="center">
+			<p id="yy">
+				<a id="hitokoto_text">获取一言中...</a>
+			</p>
+		</div>
+		<div>
+			<button class="btn" onclick="show()" id="set">设置</button>
+			<!-- 弹窗遮罩层 -->
+			<div class="dialog">
+				<!-- 弹窗内容 -->
+				<div class="content">
+					<div class="aclose">
+						<span>设置</span>
+						<a class="close" href="javascript:close();">&times;</a>
+					</div>
+					<div class="contain">
+						<button onclick="serc = by()" id="sobuttons">&nbsp;&nbsp;&nbsp;必应&nbsp;&nbsp;&nbsp;</button>
+						<button onclick="serc = bd()" id="sobuttons">&nbsp;&nbsp;&nbsp;百度&nbsp;&nbsp;&nbsp;</button>
+						<button onclick="serc = bilibili()" id="sobuttons">哔哩哔哩</button>
+						<button onclick="serc = so()" id="sobuttons">&nbsp;&nbsp;&nbsp;&nbsp;360&nbsp;&nbsp;&nbsp;</button>
+						<button onclick="serc = github()" id="sobuttons">&nbsp;Github&nbsp;</button>
+						<button onclick="serc = fso()" id="sobuttons">&nbsp;&nbsp;&nbsp;F搜&nbsp;&nbsp;&nbsp;</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</body>
+
+</html>
