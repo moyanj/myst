@@ -11,16 +11,11 @@
 		<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.10.2.min.js"></script> <!-- 引入jquery -->
 		<!-- 内部JS -->
 		<script>
-			backgroundurl('https://www.dmoe.cc/random.php')
-			function backgroundurl(url){
-				bgurl(url)
-				location.reload();
-			}
-			function bgurl(background){
-				console.log(background)
-				document.write('<style>body{background:url(' + background +') no-repeat;background-size:cover;}</style>');
-			}
-			
+			$("body").keydown(function() {
+				if (event.keyCode == "13") { //keyCode=13是回车键
+					$('#sercs').click();
+				}
+			});
 			// 检测设备类型
 			var os = function() {
 				var ua = navigator.userAgent,
@@ -40,11 +35,6 @@
 					isPc: isPc
 				};
 			}();
-			if (os.isAndroid || os.isPhone) {
-				// 手机
-				console.log("设备为手机")
-				location.href("index_m.html")
-			}
 		</script>
 
 		<script>
@@ -74,7 +64,11 @@
 					window.open(url);
 				}
 			}
-
+			// 检测是否为IE浏览器
+			function isIe() {
+				var i = navigator.userAgent.toLowerCase().indexOf("msie");
+				return i >= 0;
+			}
 			// 搜索引擎切换
 			function by() {
 				setCookie("search","https://cn.bing.com/search?q=")
@@ -158,7 +152,7 @@
 						<span>设置</span>
 						<a class="close" href="javascript:close();">&times;</a>
 					</div>
-					<div class="contain" style="overflow: scroll;">
+					<div class="contain">
 						<h3>更换搜索</h3>
 						<button onclick="serc = by()" id="sobuttons">&nbsp;&nbsp;&nbsp;必应&nbsp;&nbsp;&nbsp;</button>
 						<button onclick="serc = bd()" id="sobuttons">&nbsp;&nbsp;&nbsp;百度&nbsp;&nbsp;&nbsp;</button>
@@ -167,12 +161,6 @@
 							id="sobuttons">&nbsp;&nbsp;&nbsp;&nbsp;360&nbsp;&nbsp;&nbsp;</button>
 						<button onclick="serc = github()" id="sobuttons">&nbsp;Github&nbsp;</button>
 						<button onclick="serc = fso()" id="sobuttons">&nbsp;&nbsp;&nbsp;F搜&nbsp;&nbsp;&nbsp;</button>
-						
-						<h3>更换壁纸来源</h3>
-						<button onclick="ggbgurl('www.dmoe.cc/random.php')" id="sobuttons">樱花(二次元）</button>
-						<button onclick="ggbgurl('api.ixiaowai.cn/gqapi/gqapi.php')" id="sobuttons">小歪API(风景)</button>
-						<button onclick="ggbgurl('cdn.seovx.com/?mom=302')" id="sobuttons">夏沫API(美女)</button>
-						<button onclick="ggbgurl('cdn.seovx.com/ha/?mom=302')"id="sobuttons">夏沫API(古风)</button>
 					</div>
 				</div>
 
