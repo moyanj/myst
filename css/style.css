@@ -50,7 +50,7 @@
 
 #h2 {
 	text-align: center;
-	color: white;
+	color: #3399CC  ;
 }
 
 #hitokoto_text {
@@ -141,6 +141,7 @@
 	font-size: 20px;
 	margin-top: 10px;
 	text-align: center;
+	overflow: scroll
 }
 
 .close {
