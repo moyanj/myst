@@ -50,12 +50,12 @@
 
 #h2 {
 	text-align: center;
-	color: skyblue  ;
+	color: white  ;
 }
 
 #hitokoto_text {
 	text-align: center;
-	color: skyblue;
+	color: white;
 }
 
 #sobuttons {
@@ -63,7 +63,7 @@
 	margin: 0;
 	flex: 1;
 	height: 35px;
-	background-color: #000099;
+	background-color: skyblue;
 	color: white;
 	border-style: none;
 	outline: none;
