@@ -11,17 +11,18 @@
 		<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.10.2.min.js"></script> <!-- 引入jquery -->
 		<!-- 内部JS -->
 		<script>
-			backgroundurl('https://www.dmoe.cc/random.php')
-			function backgroundurl(url){
-				bgurl(url)
-			}
-			function bgurl(background){
-				console.log(background)
-				document.write('<style>body{background:url(' + background +') no-repeat;background-size:cover;}</style>');
-			}
-			
+			// 设置随机背景
+			backgroundurl('https://api.ixiaowai.cn/gqapi/gqapi.php')
 			// 检测设备类型
-			var os = function() {
+			if (os.isAndroid || os.isPhone) {
+				// 手机
+				console.log("设备为手机")
+				location.href("index_m.html")
+			}
+		</script>
+
+		<script>
+			function os() {
 				var ua = navigator.userAgent,
 					isWindowsPhone = /(?:Windows Phone)/.test(ua),
 					isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
@@ -38,15 +39,7 @@
 					isAndroid: isAndroid,
 					isPc: isPc
 				};
-			}();
-			if (os.isAndroid || os.isPhone) {
-				// 手机
-				console.log("设备为手机")
-				location.href("index_m.html")
 			}
-		</script>
-
-		<script>
 			// 弹窗显示
 			function show() {
 				var show = $(".dialog").css("display");
@@ -76,37 +69,37 @@
 
 			// 搜索引擎切换
 			function by() {
-				setCookie("search","https://cn.bing.com/search?q=")
+				setCookie("search", "https://cn.bing.com/search?q=")
 				alert("成功将搜索引擎设置为必应");
 				return "https://cn.bing.com/search?q=";
 			};
 
 			function bd() {
-				setCookie("search","https://www.baidu.com/s?wd=")
+				setCookie("search", "https://www.baidu.com/s?wd=")
 				alert("成功将搜索引擎设置为百度");
 				return "https://www.baidu.com/s?wd=";
 			};
 
 			function bilibili() {
-				setCookie("search","https://search.bilibili.com/all?keyword=")
+				setCookie("search", "https://search.bilibili.com/all?keyword=")
 				alert("成功将搜索引擎设置为哔哩哔哩");
 				return "https://search.bilibili.com/all?keyword=";
 			};
 
 			function so() {
-				setCookie("search","https://www.so.com/s?q=")
+				setCookie("search", "https://www.so.com/s?q=")
 				alert("成功将搜索引擎设置为360");
 				return "https://www.so.com/s?q=";
 			};
 
 			function github() {
-				setCookie("search","https://github.com/search?q=")
+				setCookie("search", "https://github.com/search?q=")
 				alert("成功将搜索引擎设置为Github");
 				return "https://github.com/search?q=";
 			};
 
 			function fso() {
-				setCookie("search","https://fsoufsou.com/search?q=")
+				setCookie("search", "https://fsoufsou.com/search?q=")
 				alert("成功将搜索引擎设置为F搜");
 				return "https://fsoufsou.com/search?q=";
 			};
@@ -166,12 +159,6 @@
 							id="sobuttons">&nbsp;&nbsp;&nbsp;&nbsp;360&nbsp;&nbsp;&nbsp;</button>
 						<button onclick="serc = github()" id="sobuttons">&nbsp;Github&nbsp;</button>
 						<button onclick="serc = fso()" id="sobuttons">&nbsp;&nbsp;&nbsp;F搜&nbsp;&nbsp;&nbsp;</button>
-						
-						<h3>更换壁纸来源</h3>
-						<button onclick="ggbgurl('www.dmoe.cc/random.php')" id="sobuttons">樱花(二次元）</button>
-						<button onclick="ggbgurl('api.ixiaowai.cn/gqapi/gqapi.php')" id="sobuttons">小歪API(风景)</button>
-						<button onclick="ggbgurl('cdn.seovx.com/?mom=302')" id="sobuttons">夏沫API(美女)</button>
-						<button onclick="ggbgurl('cdn.seovx.com/ha/?mom=302')"id="sobuttons">夏沫API(古风)</button>
 					</div>
 				</div>
 

@@ -11,13 +11,18 @@
 		<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.10.2.min.js"></script> <!-- 引入jquery -->
 		<!-- 内部JS -->
 		<script>
-			$("body").keydown(function() {
-				if (event.keyCode == "13") { //keyCode=13是回车键
-					$('#sercs').click();
-				}
-			});
+			// 设置随机背景
+			backgroundurl('https://api.ixiaowai.cn/gqapi/gqapi.php')
 			// 检测设备类型
-			var os = function() {
+			if (os.isAndroid || os.isPhone) {
+				// 手机
+				console.log("设备为手机")
+				location.href("index_m.html")
+			}
+		</script>
+
+		<script>
+			function os() {
 				var ua = navigator.userAgent,
 					isWindowsPhone = /(?:Windows Phone)/.test(ua),
 					isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
@@ -34,15 +39,7 @@
 					isAndroid: isAndroid,
 					isPc: isPc
 				};
-			}();
-			if (os.isAndroid || os.isPhone) {
-				// 手机
-				console.log("设备为手机")
-				location.href("index_m.html")
 			}
-		</script>
-
-		<script>
 			// 弹窗显示
 			function show() {
 				var show = $(".dialog").css("display");
@@ -69,44 +66,40 @@
 					window.open(url);
 				}
 			}
-			// 检测是否为IE浏览器
-			function isIe() {
-				var i = navigator.userAgent.toLowerCase().indexOf("msie");
-				return i >= 0;
-			}
+
 			// 搜索引擎切换
 			function by() {
-				setCookie("search","https://cn.bing.com/search?q=")
+				setCookie("search", "https://cn.bing.com/search?q=")
 				alert("成功将搜索引擎设置为必应");
 				return "https://cn.bing.com/search?q=";
 			};
 
 			function bd() {
-				setCookie("search","https://www.baidu.com/s?wd=")
+				setCookie("search", "https://www.baidu.com/s?wd=")
 				alert("成功将搜索引擎设置为百度");
 				return "https://www.baidu.com/s?wd=";
 			};
 
 			function bilibili() {
-				setCookie("search","https://search.bilibili.com/all?keyword=")
+				setCookie("search", "https://search.bilibili.com/all?keyword=")
 				alert("成功将搜索引擎设置为哔哩哔哩");
 				return "https://search.bilibili.com/all?keyword=";
 			};
 
 			function so() {
-				setCookie("search","https://www.so.com/s?q=")
+				setCookie("search", "https://www.so.com/s?q=")
 				alert("成功将搜索引擎设置为360");
 				return "https://www.so.com/s?q=";
 			};
 
 			function github() {
-				setCookie("search","https://github.com/search?q=")
+				setCookie("search", "https://github.com/search?q=")
 				alert("成功将搜索引擎设置为Github");
 				return "https://github.com/search?q=";
 			};
 
 			function fso() {
-				setCookie("search","https://fsoufsou.com/search?q=")
+				setCookie("search", "https://fsoufsou.com/search?q=")
 				alert("成功将搜索引擎设置为F搜");
 				return "https://fsoufsou.com/search?q=";
 			};
@@ -116,10 +109,6 @@
 			// 获取记录的cookie
 			var serc = getCookie("search")
 			// 检测是否为IE
-			if (isIe() == "false") {
-				url = "index_IE.html";
-				location.href = url;
-			};
 			// 获取一言内容
 			fvar xhr = new XMLHttpRequest();
 			xhr.open('get', 'https://v1.hitokoto.cn');
@@ -161,7 +150,7 @@
 						<span>设置</span>
 						<a class="close" href="javascript:close();">&times;</a>
 					</div>
-					<div class="contain">
+					<div class="contain" style="overflow: scroll;">
 						<h3>更换搜索</h3>
 						<button onclick="serc = by()" id="sobuttons">&nbsp;&nbsp;&nbsp;必应&nbsp;&nbsp;&nbsp;</button>
 						<button onclick="serc = bd()" id="sobuttons">&nbsp;&nbsp;&nbsp;百度&nbsp;&nbsp;&nbsp;</button>
