@@ -50,12 +50,12 @@
 
 #h2 {
 	text-align: center;
-	color: #3399CC  ;
+	color: #000099  ;
 }
 
 #hitokoto_text {
 	text-align: center;
-	color: #3399CC;
+	color: #000099;
 }
 
 #sobuttons {
@@ -63,7 +63,7 @@
 	margin: 0;
 	flex: 1;
 	height: 35px;
-	background-color: skyblue;
+	background-color: #000099;
 	color: white;
 	border-style: none;
 	outline: none;
@@ -79,7 +79,7 @@
 
 #set {
 	height: 35px;
-	background-color: skyblue;
+	background-color: #000099;
 	color: white;
 	border-style: none;
 	border-radius: 10px 10px 10px 10px;
@@ -94,7 +94,7 @@
 	/* height: 50px; */
 	/* font-size: 20px; */
 	color: white;
-	background-color: #006DCC;
+	background-color: #000099;
 	border: 0px;
 	border-radius: 10px
 }
